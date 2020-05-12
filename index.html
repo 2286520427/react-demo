@@ -14,31 +14,41 @@
       class List extends React.Component {
         // 初始化
         state = {
-          list:[{id:1,text:'html'},
-            {id:2,text:'css'},
-            {id:3,text:'js'},
-            {id:4,text:'react'},
-            {id:5,text:'java'}
-          ]
-        }
+          val: "",
+          list: [],
+        };
+        handleInput = (event) => {
+          this.setState({
+            val: event.target.value,
+          });
+        };
+        handleAdd = () => {
+          const { list, val } = this.state;
+          list.push(val);
+          this.setState({
+            list,
+          });
+        };
         render() {
+          const val = this.state.val;
           const arr = this.state.list;
           const listItem = [];
-          // for方法
-          for(var i=0;i<arr.length;i++){
-            const li =<li key={arr[i].id}>{arr[i].text}</li>
+          arr.map((item, index) => {
+            const li = <li key={index}>{item}</li>;
             listItem.push(li);
-          }
+          });
           return (
             <div>
-              <ul>
-                {listItem}
-              </ul>
+              <div>
+                <input type="text" value={val} onChange={this.handleInput} />
+                <button onClick={this.handleAdd}>添加</button>
+              </div>
+              <ul>{listItem}</ul>
             </div>
           );
         }
       }
-      ReactDOM.render(<List/>, document.getElementById("app"));
+      ReactDOM.render(<List />, document.getElementById("app"));
     </script>
   </body>
 </html>
