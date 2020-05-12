@@ -1,10 +1,32 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react-demo</title>
+    <script src="node_modules/react/umd/react.development.js"></script>
+    <script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  </head>
+  <style>
+      .red{color:red;}
+  </style>
+  <body>
+      <div id="app"></div>
+      <!-- 原生写法 -->
+      <!-- <script>
+        var hello = React.createElement('h1',{className:'red'},'hello,world!');
+        ReactDOM.render(
+            hello,
+            document.getElementById('app')
+        )
+      </script> -->
+
+      <!-- jsx语法糖写法 -->
+      <script type="text/babel">
+        ReactDOM.render(
+            <h1 className="red">hello,world!</h1>,
+            document.getElementById('app')
+        )
+      </script>
+  </body>
 </html>
