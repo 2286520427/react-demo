@@ -2,9 +2,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>react-demo</title>
+    <script src="node_modules/react/umd/react.development.js"></script>
+    <script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 </head>
 <body>
-    
+    <div id="app"></div>
+    <script type="text/babel">
+        class Hello extends React.Component {
+            // 第一阶段：组件初始化阶段
+            constructor(props) {
+                console.log('初始化阶段');
+                // 初始化组件
+                super(props);
+                // 初始化状态
+                this.state = {
+                    name: 'laura',
+                    age: 27
+                }
+            }
+            
+            // 第二阶段：组件加载阶段
+            componentWillMount(){
+                console.log('组件加载之前');
+            }
+            componentDidMount(){
+                console.log('组件加载之后');
+            }
+
+            // 第三阶段：数据更新阶段
+            updateUser =()=>{
+                // 错误的语法 
+                // this.state.name='zara'
+                // 正确的语法 
+                this.setState ({
+                    name:'zara',
+                    age:24
+                })
+            }
+            shouldComponentUpdate(){
+                console.log('数据是否更新');
+                return true;
+            }
+            componentWillUpdate(){
+                console.log('数据将要更新');
+            }
+            componentDidUpdate(){
+                console.log('数据已更新');
+            }
+            render() {
+                console.log('组件加载或数据更新');
+                return <div>
+                    <h1>hello,{this.state.name}!</h1>
+                    <p>年龄：{this.state.age}</p>
+                    <p>爱好：旅游</p>
+                    <button onClick={this.updateUser}>更新数据</button>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <Hello/>
+            ,document.getElementById("app"));
+    </script>
 </body>
 </html>
